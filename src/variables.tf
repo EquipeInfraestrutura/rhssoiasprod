@@ -7,7 +7,7 @@ variable "region" {
 variable "vpc_id" {
   type        = string
   default     = "vpc-0b97505ab47807e80"
-  description = "vpc_keycloak"
+  description = "vpc_rhsso"
 }
 
 variable "ami_id" {
