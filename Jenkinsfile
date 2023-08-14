@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-        stage('Criação ou atualização da infra RHSSO') {
+        stage('Criação ou atualização da infra RHSSO Prod') {
             environment {
                 bucket = credentials('bucket')
                 key = credentials('key_rhssoprod')
