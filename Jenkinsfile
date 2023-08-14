@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout source') {
             steps {
-                git url: 'https://github.com/EquipeInfraestrutura/rhssoiashom.git', branch: 'main'
+                git url: 'https://github.com/EquipeInfraestrutura/rhssoiasprod.git', branch: 'main'
             }
         }
 
