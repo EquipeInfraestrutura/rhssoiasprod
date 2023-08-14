@@ -12,7 +12,7 @@ pipeline {
         stage('Criação ou atualização da infra RHSSO') {
             environment {
                 bucket = credentials('bucket')
-                key = credentials('key_rhssohom')
+                key = credentials('key_rhssoprod')
                 region = credentials('region')
                 AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
                 AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
