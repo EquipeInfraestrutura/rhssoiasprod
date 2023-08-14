@@ -106,7 +106,7 @@ resource "aws_autoscaling_group" "asg_rhsso" {
 }
 
 resource "aws_autoscaling_attachment" "asg_attachment_bar" {
-  autoscaling_group_name = aws_autoscaling_group.ag_rhsso.id
+  autoscaling_group_name = aws_autoscaling_group.asg_rhsso.id
   lb_target_group_arn    = aws_lb_target_group.alb-rhsso.arn
 }
 
