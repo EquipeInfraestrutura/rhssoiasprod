@@ -6,16 +6,7 @@ resource "aws_launch_template" "rhsso" {
   key_name                  = var.keyname
   vpc_security_group_ids    = var.sg_keycloak
   instance_type             = var.instance
-  user_data                 = <<-EOT
-                              #!/bin/bash
-                              yum install aws-cli -y
-                              PARAM_VALUE=$(aws ssm get-parameter --name "KC_DB_CONNSTRING" --query "Parameter.Value" --output text)
-                              PARAM_VALUE1=$(aws ssm get-parameter --name "KC_DB_USER" --query "Parameter.Value" --output text)
-                              PARAM_VALUE2=$(aws ssm get-parameter --name "KC_DB_PW" --query "Parameter.Value" --output text)
-                              echo "export KC_DB_CONNSTRING=$PARAM_VALUE" >> /etc/profile
-                              echo "export KC_DB_USER=$PARAM_VALUE1" >> /etc/profile
-                              echo "export KC_DB_PW=$PARAM_VALUE2" >> /etc/profile
-                              EOT
+  user_data                 = "${base64encode(data.template_file.test.rendered)}"
   tag_specifications {
     resource_type = "instance"
     tags = {
