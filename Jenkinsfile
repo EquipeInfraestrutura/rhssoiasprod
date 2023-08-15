@@ -24,7 +24,8 @@ pipeline {
                 script {
                     dir('src') {
                         sh 'terraform init -migrate-state --backend-config "bucket=${bucket}" --backend-config "key=${key}" --backend-config "region=${region}"'
-                        sh 'terraform plan'
+                        sh 'terraform validate'
+                        sh 'terraform apply --auto-approve'
                     }
                 }
             }
