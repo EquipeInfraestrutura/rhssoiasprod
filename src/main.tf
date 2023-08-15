@@ -1,5 +1,5 @@
 # Configuração do Launch Configuration
-resource "aws_launch_template" "rhsso" {
+resource "aws_launch_template" "rhssoprod" {
   name                      = "rhsso"
   description               = "Ambiente de Producao-RHSSO"
   image_id                  = var.ami_id
