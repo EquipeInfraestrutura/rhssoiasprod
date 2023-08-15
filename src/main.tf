@@ -8,7 +8,7 @@ resource "aws_launch_template" "rhsso" {
   instance_type             = var.instance
   user_data                 = <<-EOT
                               #!/bin/bash
-                              yum install -y aws-cli
+                              yum install aws-cli -y
                               PARAM_VALUE=$(aws ssm get-parameter --name "KC_DB_CONNSTRING" --query "Parameter.Value" --output text)
                               PARAM_VALUE1=$(aws ssm get-parameter --name "KC_DB_USER" --query "Parameter.Value" --output text)
                               PARAM_VALUE2=$(aws ssm get-parameter --name "KC_DB_PW" --query "Parameter.Value" --output text)
