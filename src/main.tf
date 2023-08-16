@@ -98,7 +98,7 @@ resource "aws_autoscaling_group" "asg_rhsso" {
   health_check_type         = "EC2"
   vpc_zone_identifier       = var.subnets
 
-   iam_instance_profile {
+  iam_instance_profile {
     name = aws_iam_instance_profile.iam-ssm.ssm-profile
   }
 
