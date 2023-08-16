@@ -6,7 +6,11 @@ resource "aws_launch_template" "rhsso" {
   key_name                  = var.keyname
   vpc_security_group_ids    = var.sg_keycloak
   instance_type             = var.instance
-  user_data                 = "${base64encode(data.template_file.test.rendered)}"
+  user_data                 = "${base64encode(data.template_file.test.rendered)}"  
+  iam_instance_profile {
+    name = aws_iam_instance_profile.iam-ssm.ssm-profile
+  }
+
   tag_specifications {
     resource_type = "instance"
     tags = {
@@ -97,11 +101,6 @@ resource "aws_autoscaling_group" "asg_rhsso" {
   target_group_arns         = ["${aws_lb_target_group.alb-rhsso.arn}"]
   health_check_type         = "EC2"
   vpc_zone_identifier       = var.subnets
-
-  iam_instance_profile {
-    name = aws_iam_instance_profile.iam-ssm.ssm-profile
-  }
-
 
   launch_template {
     id      = aws_launch_template.rhsso.id
