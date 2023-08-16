@@ -7,9 +7,9 @@ resource "aws_launch_template" "rhsso" {
   vpc_security_group_ids    = var.sg_keycloak
   instance_type             = var.instance
   user_data                 = "${base64encode(data.template_file.test.rendered)}"  
-  iam_instance_profile {
-    name = aws_iam_instance_profile.iam-ssm.name
-  }
+  # iam_instance_profile {
+  #   name = aws_iam_instance_profile.iam-ssm.name
+  # }
     
   tag_specifications {
     resource_type = "instance"
