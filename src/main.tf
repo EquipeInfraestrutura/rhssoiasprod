@@ -8,7 +8,7 @@ resource "aws_launch_template" "rhsso" {
   instance_type             = var.instance
   user_data                 = "${base64encode(data.template_file.test.rendered)}"  
   iam_instance_profile {
-      Name = aws_iam_instance_profile.iam-ssm.ssmprofile
+      name = aws_iam_instance_profile.iam-ssm.ssmprofile
       }
   tag_specifications {
     resource_type = "instance"
