@@ -79,6 +79,14 @@ resource "aws_lb_listener_certificate" "cert_keycloak" {
   certificate_arn = var.certificate
 }
 
+# Role que permitirá acesso ao SSM
+
+resource "aws_iam_instance_profile" "iam-ssm" {
+  name = "ssm-profile"
+  role = "arn:aws:iam::906520347629:role/SSM_RHSSO"
+}
+
+
 # Configuração do Auto Scaling Group 
 resource "aws_autoscaling_group" "asg_rhsso" {
   name                      = "rhssoprod"
@@ -89,6 +97,11 @@ resource "aws_autoscaling_group" "asg_rhsso" {
   target_group_arns         = ["${aws_lb_target_group.alb-rhsso.arn}"]
   health_check_type         = "EC2"
   vpc_zone_identifier       = var.subnets
+
+   iam_instance_profile {
+    name = aws_iam_instance_profile.iam-ssm.ssm-profile
+  }
+
 
   launch_template {
     id      = aws_launch_template.rhsso.id
