@@ -8,9 +8,8 @@ resource "aws_launch_template" "rhsso" {
   instance_type             = var.instance
   user_data                 = "${base64encode(data.template_file.test.rendered)}"  
   iam_instance_profile {
-    name = aws_iam_instance_profile.iam-ssm.ssm-profile
-  }
-
+      Name = aws_iam_instance_profile.iam-ssm.ssmprofile
+      }
   tag_specifications {
     resource_type = "instance"
     tags = {
@@ -86,10 +85,9 @@ resource "aws_lb_listener_certificate" "cert_keycloak" {
 # Role que permitirá acesso ao SSM
 
 resource "aws_iam_instance_profile" "iam-ssm" {
-  name = "ssm-profile"
+  name = "ssmprofile"
   role = "arn:aws:iam::906520347629:role/SSM_RHSSO"
 }
-
 
 # Configuração do Auto Scaling Group 
 resource "aws_autoscaling_group" "asg_rhsso" {
