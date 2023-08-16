@@ -76,3 +76,9 @@ variable "health_check" {
       "healthy_threshold" = "5"
     }
 }
+
+variable "role" {
+  type        = string
+  default     = "arn:aws:iam::906520347629:role/SSM_RHSSO"
+  description = "role_ssm"
+}
