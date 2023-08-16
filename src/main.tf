@@ -87,7 +87,7 @@ resource "aws_lb_listener_certificate" "cert_keycloak" {
 
 resource "aws_iam_instance_profile" "iam-ssm" {
   name = "ssmprofile"
-  role = var.role
+  role = "arn:aws:iam::906520347629:role/SSM_RHSSO"
 }
 
 # Configuração do Auto Scaling Group 
