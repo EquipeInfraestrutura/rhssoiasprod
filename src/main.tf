@@ -85,10 +85,10 @@ resource "aws_lb_listener_certificate" "cert_keycloak" {
 
 # Role que permitirá acesso ao SSM
 
-resource "aws_iam_instance_profile" "iam-ssm" {
-  name = "ssmprofile"
-  role = var.role
-}
+# resource "aws_iam_instance_profile" "iam-ssm" {
+#   name = "ssmprofile"
+#   role = "arn:aws:iam::SEU_ACCOUNT_ID:role/SUA_IAM_ROLE_NAME"
+# }
 
 # Configuração do Auto Scaling Group 
 resource "aws_autoscaling_group" "asg_rhsso" {
