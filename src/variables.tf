@@ -78,7 +78,7 @@ variable "health_check" {
 }
 
 variable "role" {
-  type        = string
-  default     = "arn:aws:iam::906520347629:role/SSM_RHSSO"
+  type        = list
+  default     = ["arn:aws:iam::906520347629:role/SSM_RHSSO"]
   description = "role_ssm"
 }
