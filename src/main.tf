@@ -8,7 +8,7 @@ resource "aws_launch_template" "rhsso" {
   instance_type             = var.instance
   user_data                 = "${base64encode(data.template_file.test.rendered)}"  
   iam_instance_profile {
-    name = aws_iam_instance_profile.iam-ssm.name
+    name = "${aws_iam_instance_profile.ec2rhsso_profile.name}"
   }
     
   tag_specifications {
@@ -18,6 +18,24 @@ resource "aws_launch_template" "rhsso" {
       Project_Name = "RHSSO"
     }
   }
+}
+
+resource "aws_iam_role_policy" "ec2rhsso_policy" {
+  name = "ec2rhsso_policy"
+  role = "${aws_iam_role.rolerhsso.id}"
+
+  policy = "${file("ec2-policy.json")}"
+}
+
+resource "aws_iam_role" "rolerhsso" {
+  name = "rolerhsso"
+
+  assume_role_policy = "${file("ec2-assume-policy.json")}"
+}
+
+resource "aws_iam_instance_profile" "ec2rhsso_profile" {
+  name = "ec2rhsso"
+  role = "${aws_iam_role.rolerhsso.name}"
 }
 
 # Configuração do Application Load Balancer
