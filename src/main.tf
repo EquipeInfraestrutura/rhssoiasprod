@@ -33,6 +33,8 @@ resource "aws_iam_role" "rolerhsso" {
   assume_role_policy = "${file("ec2-assume-policy.json")}"
 }
 
+# Role que permitirá acesso ao SSM
+
 resource "aws_iam_instance_profile" "ec2rhsso_profile" {
   name = "ec2rhsso"
   role = "${aws_iam_role.rolerhsso.name}"
@@ -99,13 +101,6 @@ resource "aws_lb_listener" "lb_listner_https" {
 resource "aws_lb_listener_certificate" "cert_keycloak" {
   listener_arn    = aws_lb_listener.lb_listner_https.arn
   certificate_arn = var.certificate
-}
-
-# Role que permitirá acesso ao SSM
-
-resource "aws_iam_instance_profile" "iam-ssm" {
-  name = "ssmprofile"
-  role = aws_iam_role.SSM_RHSSO.name
 }
 
 # Configuração do Auto Scaling Group 
