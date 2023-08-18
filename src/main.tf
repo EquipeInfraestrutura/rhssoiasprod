@@ -35,6 +35,11 @@ resource "aws_iam_role" "rolerhsso" {
 
 # Role que permitirá acesso ao SSM
 
+resource "aws_iam_instance_profile" "ssmprofile" {
+  name = "iam-ssm"
+  role = "arn:aws:iam::906520347629:role/SSM_RHSSO"
+}
+
 resource "aws_iam_instance_profile" "ec2rhsso_profile" {
   name = "ec2rhsso"
   role = "${aws_iam_role.rolerhsso.name}"
