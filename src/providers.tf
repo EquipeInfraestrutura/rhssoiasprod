@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {}
-
+#script para enviar as variáveis para o parameter store
 data "template_file" "test" {
   template = <<-EOT
               #!/bin/bash
