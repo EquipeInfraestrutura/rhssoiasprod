@@ -134,7 +134,7 @@ resource "aws_autoscaling_attachment" "asg_attachment_bar" {
 # Configuração da entrada A no Route 53
 resource "aws_route53_record" "www" {
   zone_id = var.hostedzone
-  name    = "acessotf"
+  name    = "acesso"
   type    = "A"
 
   alias {
