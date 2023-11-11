@@ -17,7 +17,15 @@
                 "ssm:PutConfigurePackageResult",
                 "ssm:UpdateAssociationStatus",
                 "ssm:UpdateInstanceAssociationStatus",
-                "ssm:UpdateInstanceInformation"
+                "ssm:UpdateInstanceInformation",
+                "cloudwatch:PutMetricData",
+                "ec2:DescribeVolumes",
+                "ec2:DescribeTags",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams",
+                "logs:DescribeLogGroups",
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup"
         ],
         "Effect": "Allow",
         "Resource": "*"

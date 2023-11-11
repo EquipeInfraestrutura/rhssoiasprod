@@ -36,7 +36,7 @@ variable "subnets" {
 
 variable "instance" {
   type        = string
-  default     = "t3a.small"
+  default     = "t3a.medium"
   description = "instance_keycloak"
 }
 
